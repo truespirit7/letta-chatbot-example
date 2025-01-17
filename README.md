@@ -56,8 +56,8 @@ npm install
 npm run dev
 ```
 
-#### 🔸 Open the app in your web browser
-Once the app is running, open your web browser and navigate to [http://localhost:3000](http://localhost:3000) to see it in action.
+#### 🔸 See the app in action
+Once the app is running, open your web browser and navigate to [http://localhost:3000](http://localhost:3000).
 
 
 
