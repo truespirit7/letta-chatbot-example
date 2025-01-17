@@ -19,7 +19,7 @@ export function SidebarContent() {
 		createAgent(undefined, {
 			onSuccess: (data) => {
 				queryClient.setQueriesData({ queryKey: USE_AGENTS_KEY }, (oldData: AgentState[]) => {
-					return [...oldData, data]
+					return [data, ...oldData]
 				})
 				setAgentId(data.id)
 			}
