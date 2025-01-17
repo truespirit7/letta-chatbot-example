@@ -28,7 +28,7 @@ async function createAgent(req: NextApiRequest) {
             value: 'My name is Sam, the all-knowing sentient AI.',
         },
     ];
-    const DEFAULT_LLM = 'openai/gpt-4o';
+    const DEFAULT_LLM = 'openai/gpt-4o-mini';
     const DEFAULT_EMBEDDING = 'openai/text-embedding-ada-002';
 
     try {

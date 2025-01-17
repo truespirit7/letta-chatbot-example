@@ -54,7 +54,7 @@ async function getAgentMessages(
         const messages = await client.agents.messages.list(agentId, {
             limit: 100,
         });
-        console.log;
+
         const result = filterMessages(messages);
         return NextResponse.json(result);
     } catch (error) {
@@ -70,13 +70,16 @@ async function sendMessage(
     const { role, text } = await req.json();
     const { agentId } = await params;
 
+
+
     // set up evenstream
     const encoder = new TextEncoder();
 
     const response = new NextResponse(
         new ReadableStream({
             async start(controller) {
-                const response = await client.agents.messages.stream(agentId, {
+
+                const response = await client.agents.messages.create(agentId, {
                     messages: [
                         {
                             role,
@@ -85,18 +88,13 @@ async function sendMessage(
                     ],
                 });
 
-                for await (const chunk of response) {
-                    console.log('chunk', chunk);
-                    const messageToSend = filterMessages([chunk])?.[0];
+                const messageToSend = filterMessages(response.messages)?.[0];
 
-                    if (!messageToSend) {
-                        return;
-                    }
+                controller.enqueue(
+                  encoder.encode(`data: ${JSON.stringify(messageToSend)}\n\n`),
+                );
 
-                    controller.enqueue(
-                        encoder.encode(`data: ${JSON.stringify(messageToSend)}\n\n`),
-                    );
-                }
+                controller.close();
 
                 // Close connection on request close
                 req.signal.addEventListener('abort', () => {
