@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --check './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "format:fix": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -40,6 +42,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
     "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-tailwindcss": "^3.17.5",
     "postcss": "^8",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.10",

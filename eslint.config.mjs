@@ -6,20 +6,28 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
-    baseDirectory: __dirname,
+  baseDirectory: __dirname,
 });
 
 const eslintConfig = [
-    ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
-    {
-        ignores: ['node_modules', 'dist', 'build', '.next'],
+  ...compat.extends(
+    'next/core-web-vitals',
+    'next/typescript',
+    'prettier',
+    'plugin:tailwindcss/recommended',
+    'plugin:@typescript-eslint/recommended',
+  ),
+  {
+    ignores: ['node_modules', 'dist', 'build', '.next'],
+  },
+  {
+    parser: '@typescript-eslint/parser',
+  },
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'error',
     },
-    {
-        rules: {
-            'indent': ['error', 4],
-            'quotes': [2, 'single']
-        }
-    }
+  },
 ];
 
 export default eslintConfig;
