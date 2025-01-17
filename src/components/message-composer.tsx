@@ -1,20 +1,19 @@
-"use client"
+'use client'
 
-import { useForm } from "react-hook-form"
-import { Button } from "@/components/ui/button"
+import { useForm } from 'react-hook-form'
+import { Button } from '@/components/ui/button'
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from "@/components/ui/form"
-import { Textarea } from "@/components/ui/textarea"
-import { useRef } from "react"
-import { ArrowUpIcon } from "lucide-react"
-import { useAgentContext } from "@/app/(chat)/context/agent-context"
-import { useSendMessage } from "./hooks/use-send-message"
-import { useAgentMessages } from "./hooks/use-agent-messages"
+} from '@/components/ui/form'
+import { Textarea } from '@/components/ui/textarea'
+import { useRef } from 'react'
+import { ArrowUpIcon } from 'lucide-react'
+import { useAgentContext } from '@/app/(chat)/context/agent-context'
+import { useSendMessage } from './hooks/use-send-message'
 
 export function MessageComposer() {
 	const { agentId } = useAgentContext();
@@ -23,7 +22,7 @@ export function MessageComposer() {
 	const parentRef = useRef<HTMLDivElement>(null);
 
 	const form = useForm({
-		defaultValues: { message: "" },
+		defaultValues: { message: '' },
 	});
 	async function onSubmit(data: { message: string }) {
 		if (isPending) {

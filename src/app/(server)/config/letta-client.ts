@@ -1,4 +1,4 @@
-import { LettaClient } from "@letta-ai/letta-client"
+import { LettaClient } from '@letta-ai/letta-client'
 
 const LOCAL_TOKEN = 'your-local-token'
 const BASE_URL = 'http://localhost:8283'

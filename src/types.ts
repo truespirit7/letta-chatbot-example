@@ -3,8 +3,8 @@ export enum UserType {
 }
 
 export enum MessageType {
-    TOOL_CALL_MESSAGE = "tool_call_message",
-    USER_MESSAGE = "user_message"
+    TOOL_CALL_MESSAGE = 'tool_call_message',
+    USER_MESSAGE = 'user_message'
 }
 
 export interface AppMessage {
@@ -14,4 +14,3 @@ export interface AppMessage {
     messageType: MessageType;
     toolCall?: { arguments: string };
 }
-

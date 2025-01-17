@@ -1,44 +1,44 @@
-import { useEffect, useRef } from "react"
-import { MessagePill } from "@/components/ui/message";
-import { useAgentContext } from "../app/(chat)/context/agent-context";
-import { useAgentMessages } from "./hooks/use-agent-messages";
-import { Ellipsis } from "lucide-react";
+import { useEffect, useRef } from 'react'
+import { MessagePill } from '@/components/ui/message';
+import { useAgentContext } from '../app/(chat)/context/agent-context';
+import { useAgentMessages } from './hooks/use-agent-messages';
+import { Ellipsis } from 'lucide-react';
 
 
 export const Messages: React.FC = () => {
-    const { agentId } = useAgentContext();
-    const { data } = useAgentMessages(agentId);
-    const messagesEndRef = useRef<HTMLDivElement>(null);
+	const { agentId } = useAgentContext();
+	const { data } = useAgentMessages(agentId);
+	const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        if (messagesEndRef.current) {
-            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [data]);
+	useEffect(() => {
+		if (messagesEndRef.current) {
+			messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+		}
+	}, [data]);
 
-    return (
-        <div className="w-full mx-auto max-w-3xl px-4 group/message">
-            <div className="flex flex-col min-w-0 gap-6 flex-1 pt-4">
-                {data ? (
-                    data.map((message) => {
-                        const messageId = message.id;
-                        return messageId === 'deleteme_' ? (
-                            <Ellipsis key={messageId}
-                                className="animate-pulse" />
-                        ) : (
-                            <MessagePill
-                                key={messageId}
-                                message={message.message}
-                                sender={message.messageType}
-                            />
-                        );
-                    })
-                ) : (
-                    // TODO: ADD LOADING STATE
-                    ''
-                )}
-                <div ref={messagesEndRef} />
-            </div>
-        </div>
-    );
+	return (
+		<div className="w-full mx-auto max-w-3xl px-4 group/message">
+			<div className="flex flex-col min-w-0 gap-6 flex-1 pt-4">
+				{data ? (
+					data.map((message) => {
+						const messageId = message.id;
+						return messageId === 'deleteme_' ? (
+							<Ellipsis key={messageId}
+								className="animate-pulse" />
+						) : (
+							<MessagePill
+								key={messageId}
+								message={message.message}
+								sender={message.messageType}
+							/>
+						);
+					})
+				) : (
+					// TODO: ADD LOADING STATE
+					''
+				)}
+				<div ref={messagesEndRef} />
+			</div>
+		</div>
+	);
 };
