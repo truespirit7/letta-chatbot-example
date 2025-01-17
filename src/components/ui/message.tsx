@@ -7,18 +7,18 @@ interface MessagePillProps {
 }
 
 const MessagePill: React.FC<MessagePillProps> = ({ message, sender }) => {
-	return (
-		<div
-			className={cn(
-				'flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm',
-				sender === 'user_message'
-					? 'ml-auto bg-primary text-primary-foreground'
-					: 'bg-muted'
-			)}
-		>
-			{message}
-		</div>
-	);
+    return (
+        <div
+            className={cn(
+                'flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm',
+                sender === 'user_message'
+                    ? 'ml-auto bg-primary text-primary-foreground'
+                    : 'bg-muted'
+            )}
+        >
+            {message}
+        </div>
+    );
 };
 
 export { MessagePill };
