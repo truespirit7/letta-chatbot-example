@@ -33,7 +33,7 @@ export const Messages = (props: MessagesProps) => {
       messagesListRef.current.scrollTo(0, messagesListRef.current.scrollHeight);
       mounted.current = true;
     }
-  }, []);
+  }, [messages]);
 
   useEffect(() => {
     if (messagesListRef.current) {

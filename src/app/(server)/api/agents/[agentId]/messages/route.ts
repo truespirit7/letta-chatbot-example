@@ -1,17 +1,13 @@
-import { AppMessage, MessageType } from '@/types';
 import { NextApiRequest } from 'next';
 import { NextRequest, NextResponse } from 'next/server';
 import client from '@/config/letta-client';
 import { filterMessages } from '@/lib/utils';
-import {
-    MessagesListResponseItem
-} from '@letta-ai/letta-client/api/resources/agents/resources/messages/types/MessagesListResponseItem';
 import { Letta } from '@letta-ai/letta-client';
 
 
 
 async function getAgentMessages(
-    req: NextApiRequest,
+    _req: NextApiRequest,
     { params }: { params: { agentId: string } },
 ) {
     try {
@@ -46,7 +42,7 @@ async function sendMessage(
                     messages: [
                         {
                             role,
-                            text,
+                            content: text,
                         },
                     ],
                 });

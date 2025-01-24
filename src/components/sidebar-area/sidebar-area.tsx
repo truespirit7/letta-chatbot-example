@@ -8,7 +8,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { USE_AGENTS_KEY, useAgents } from '../hooks/use-agents';
 import { StatusCircle } from '../ui/status-circle';
 import { useIsConnected } from '../hooks/use-is-connected';
-import { useEffect } from 'react';
+import {useEffect, useMemo} from 'react';
 import { AgentState } from '@letta-ai/letta-client/api';
 
 export function SidebarArea() {
@@ -51,6 +51,14 @@ export function SidebarArea() {
     }
   }, [data])
 
+  const hostname = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.hostname === 'localhost' ? 'LOCAL SERVER' : 'REMOTE SERVER';
+    }
+
+    return 'LOCAL SERVER';
+  }, [])
+
   return (
     <Sidebar>
       <div className="flex flex-row items-center justify-between">
@@ -62,7 +70,7 @@ export function SidebarArea() {
             }}
           >
             <StatusCircle isConnected={isConnected} isLoading={isLoading} />
-            {window.location.hostname === 'localhost' ? 'LOCAL SERVER' : 'REMOTE SERVER'}
+            {hostname}
           </div>
         </div>
         <div className="flex justify-end p-2">

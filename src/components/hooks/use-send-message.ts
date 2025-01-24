@@ -69,7 +69,7 @@ export function useSendMessage() {
                                             id: response.id,
                                             date: new Date(response.date).getTime(),
                                             messageType: response.messageType,
-                                            message: `${existingMessage.message || ''}${response.assistantMessage || ''}`,
+                                            message: `${existingMessage.message || ''}${response.content || ''}`,
                                         };
                                     }
 
@@ -81,7 +81,7 @@ export function useSendMessage() {
                                 id: response.id,
                                 date: new Date(response.date).getTime(),
                                 messageType: response.messageType,
-                                message: response.assistantMessage || '',
+                                message: response.content || '',
                             }];
                         },
                     );
