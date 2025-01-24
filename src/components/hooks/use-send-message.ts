@@ -81,7 +81,7 @@ export function useSendMessage() {
                                 id: response.id,
                                 date: new Date(response.date).getTime(),
                                 messageType: response.messageType,
-                                message: response.content || '',
+                                message: typeof response.content === 'string' ? response.content : response.content?.text || '',
                             }];
                         },
                     );

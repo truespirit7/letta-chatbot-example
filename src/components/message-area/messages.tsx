@@ -7,13 +7,15 @@ import { MessagePopover } from './message-popover';
 import { DEFAULT_BOT_MESSAGE, ERROR_CONNECTING } from '@/app/lib/labels';
 import { useIsConnected } from '../hooks/use-is-connected';
 import { useAgents } from '../hooks/use-agents';
+import {UseSendMessageType} from "@/components/hooks/use-send-message";
 
 interface MessagesProps {
   isSendingMessage: boolean;
+  sendMessage: (options: UseSendMessageType) => void;
 }
 
 export const Messages = (props: MessagesProps) => {
-  const { isSendingMessage } = props;
+  const { isSendingMessage, sendMessage } = props;
   const { agentId } = useAgentContext();
   const { data: messages, isLoading } = useAgentMessages(agentId);
   const { data: agents } = useAgents()
@@ -57,7 +59,7 @@ export const Messages = (props: MessagesProps) => {
           {messages ? (
             messages.length === 1 &&
             messages[0].message === DEFAULT_BOT_MESSAGE ? (
-              <MessagePopover key={messages[0].id} />
+              <MessagePopover sendMessage={sendMessage} key={messages[0].id} />
             ) : (
               <div className="flex min-w-0 flex-1 flex-col gap-6 pt-4">
 

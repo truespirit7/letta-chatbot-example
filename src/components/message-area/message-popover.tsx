@@ -1,14 +1,18 @@
 import React from 'react';
 import { Card, CardDescription, CardHeader } from '../ui/card';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { useSendMessage } from '../hooks/use-send-message';
+import {useSendMessage, UseSendMessageType} from '../hooks/use-send-message';
 import { useAgentContext } from '@/app/[agentId]/context/agent-context';
 import { MESSAGE_POPOVER_DESCRIPTION, suggestedChatActions } from '@/app/lib/labels';
 
-export const MessagePopover: React.FC = () => {
+interface MessagePopoverProps {
+    sendMessage: (options: UseSendMessageType) => void;
+}
+
+export const MessagePopover = (props: MessagePopoverProps) => {
   const isMobile = useIsMobile();
+  const { sendMessage } = props;
   const { agentId } = useAgentContext();
-  const { mutate: sendMessage } = useSendMessage();
 
   return (
     <div className="flex flex-col items-center h-full justify-between">
