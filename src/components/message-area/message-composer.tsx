@@ -12,12 +12,18 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { useRef } from 'react';
 import { ArrowUpIcon } from 'lucide-react';
-import { useAgentContext } from '@/app/(chat)/context/agent-context';
-import { useSendMessage } from './hooks/use-send-message';
+import { useAgentContext } from '@/app/[agentId]/context/agent-context';
+import { UseSendMessageType } from '../hooks/use-send-message';
+import { TEXTBOX_PLACEHOLDER } from '@/app/lib/labels';
 
-export function MessageComposer() {
+interface MessageComposerProps {
+  sendMessage: (options: UseSendMessageType) => void;
+  isSendingMessage: boolean;
+}
+
+export function MessageComposer(props: MessageComposerProps) {
   const { agentId } = useAgentContext();
-  const { mutate: sendMessage, isPending } = useSendMessage();
+  const { sendMessage, isSendingMessage } = props;
 
   const parentRef = useRef<HTMLDivElement>(null);
 
@@ -25,7 +31,7 @@ export function MessageComposer() {
     defaultValues: { message: '' },
   });
   async function onSubmit(data: { message: string }) {
-    if (isPending) {
+    if (isSendingMessage) {
       return;
     }
     form.reset();
@@ -50,7 +56,7 @@ export function MessageComposer() {
                     <FormControl>
                       <Textarea
                         className="!focus-visible:outline-none !focus-visible:ring-0 flex w-full resize-none overflow-hidden border-none bg-transparent text-base shadow-none ring-0 placeholder:text-muted-foreground hover:border-none focus:border-none focus:ring-0 md:text-sm"
-                        placeholder="Send a message..."
+                        placeholder={TEXTBOX_PLACEHOLDER}
                         {...field}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' && !e.shiftKey) {
@@ -68,7 +74,7 @@ export function MessageComposer() {
                 <Button
                   type="submit"
                   className="flex h-8 w-1 items-center justify-center rounded-full"
-                  disabled={isPending}
+                  disabled={isSendingMessage}
                 >
                   <ArrowUpIcon width={14} height={16} />
                 </Button>

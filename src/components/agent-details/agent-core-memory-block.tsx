@@ -1,13 +1,14 @@
-import { useAgentContext } from '@/app/(chat)/context/agent-context';
-import { useAgentState } from './hooks/use-agent-state';
+import { useAgentContext } from '@/app/[agentId]/context/agent-context';
+import { useAgentState } from '../hooks/use-agent-state';
+import { SkeletonLoadBlock } from '../ui/skeleton-load-block';
 
 export function AgentCoreMemoryBlock() {
   const { agentId } = useAgentContext();
-  const { data } = useAgentState(agentId);
+  const { data, isLoading } = useAgentState(agentId);
   const coreMemory = data?.memory?.blocks || [];
 
-  if (!coreMemory) {
-    return <div>Loading...</div>;
+  if (!coreMemory || isLoading) {
+    return <SkeletonLoadBlock className="w-[18em] h-[6em]" />;
   }
 
   return (

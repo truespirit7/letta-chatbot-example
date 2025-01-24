@@ -5,22 +5,19 @@ import {
   SidebarMenu,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { useAgents } from '@/components/hooks/use-agents';
-import { AppSidebarMenuItem } from './app-sidebar-menu-item';
+import { AppSidebarMenuButton } from './app-sidebar-menu-button';
+import { AgentState } from '@letta-ai/letta-client/api';
 
-export function AppSidebar() {
-  const { data } = useAgents();
+export function AppSidebar({ agents }: { agents: AgentState[] }) {
   return (
-    <SidebarContent>
+    <SidebarContent id='agents-list'>
       <SidebarGroup>
         <SidebarGroupContent>
           <SidebarMenu className="cursor-pointer">
-            {data &&
-              data.map((agent) => (
+            {agents &&
+              agents.map((agent) => (
                 <SidebarMenuItem key={agent.id}>
-                  <div className="border-l-4 border-gray-200">
-                    <AppSidebarMenuItem agent={agent} />
-                  </div>
+                  <AppSidebarMenuButton agent={agent} />
                 </SidebarMenuItem>
               ))}
           </SidebarMenu>

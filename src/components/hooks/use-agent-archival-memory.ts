@@ -14,5 +14,6 @@ export function useAgentArchivalMemory(agentId: string) {
       return response.json();
     },
     refetchInterval: 3000,
+    enabled: !!agentId,
   });
 }

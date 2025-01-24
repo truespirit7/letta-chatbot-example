@@ -1,17 +1,30 @@
 import { AgentDetailsTrigger } from './ui/agent-details';
-import { useAgentContext } from '@/app/(chat)/context/agent-context';
-import { useAgentState } from './hooks/use-agent-state';
+import { useAgentContext } from '@/app/[agentId]/context/agent-context';
+import { useAgents } from './hooks/use-agents';
+import { SkeletonLoadBlock } from './ui/skeleton-load-block';
+import { SidebarTrigger } from './ui/sidebar';
 
 export const ChatHeader: React.FC = () => {
     const { agentId } = useAgentContext();
-    const { data: agentData } = useAgentState(agentId);
+    const { data: agentData, isLoading } = useAgents();
+
+    const selectedAgent = agentData && agentData.length > 0 && agentData?.find((a) => a.id === agentId);
 
     return (
-        <div className="flex-1">
-            <div className="flex items-center justify-between">
-                <div className="text-l font-bold">{agentData?.name}</div>
-                <AgentDetailsTrigger />
+        <>
+            <SidebarTrigger />
+            <div className="flex-1">
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between">
+                        {isLoading ? (
+                            <SkeletonLoadBlock className="w-[10em] h-[1em]" />
+                        ) : (
+                            <div className="text-l font-bold">{selectedAgent?.name}</div>
+                        )}
+                    </div>
+                    <AgentDetailsTrigger isLoading={isLoading} />
+                </div>
             </div>
-        </div>
+        </>
     );
 };

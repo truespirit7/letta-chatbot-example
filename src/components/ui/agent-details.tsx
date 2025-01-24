@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { BrainIcon } from 'lucide-react';
+import { BrainIcon, LoaderCircle } from 'lucide-react';
 import { createContext, forwardRef, useContext, useState } from 'react';
 
 interface AgentDetailsContextProps {
@@ -34,8 +34,8 @@ function useAgentDetails() {
 
 const AgentDetailsTrigger = forwardRef<
   React.ElementRef<typeof Button>,
-  React.ComponentProps<typeof Button>
->(({ className, onClick, ...props }, ref) => {
+  React.ComponentProps<typeof Button> & { isLoading: boolean }
+>(({ className, onClick, isLoading, ...props }, ref) => {
   const { isOpen, setIsOpen } = useAgentDetails();
 
   return (
@@ -49,9 +49,10 @@ const AgentDetailsTrigger = forwardRef<
         onClick?.(event);
         setIsOpen(!isOpen);
       }}
+      disabled={isLoading}
       {...props}
     >
-      <BrainIcon />
+      {isLoading ? <LoaderCircle className="animate-spin" size={17} /> : <BrainIcon />}
       <span className="sr-only">Toggle Agent Details</span>
     </Button>
   );

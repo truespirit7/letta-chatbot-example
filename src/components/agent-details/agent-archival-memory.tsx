@@ -1,10 +1,15 @@
-import { useAgentContext } from '@/app/(chat)/context/agent-context';
-import { useAgentArchivalMemory } from './hooks/use-agent-archival-memory';
+import { useAgentContext } from '@/app/[agentId]/context/agent-context';
+import { useAgentArchivalMemory } from '../hooks/use-agent-archival-memory';
+import { SkeletonLoadBlock } from '../ui/skeleton-load-block';
 
 export function AgentArchivalMemory() {
   const { agentId } = useAgentContext();
-  const { data } = useAgentArchivalMemory(agentId);
+  const { data, isLoading } = useAgentArchivalMemory(agentId);
   const archivalMemory = data || [];
+
+  if (!archivalMemory || isLoading) {
+    return <SkeletonLoadBlock className="w-[18em] h-[6em]" />;
+  }
 
   return (
     <div>
