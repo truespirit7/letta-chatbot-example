@@ -15,6 +15,7 @@ import { TooltipTrigger } from '../ui/tooltip';
 import { TooltipContent } from '../ui/tooltip';
 import { TooltipProvider } from '../ui/tooltip';
 
+
 export function SidebarArea() {
   const { agentId, setAgentId } = useAgentContext();
   const queryClient = useQueryClient();
