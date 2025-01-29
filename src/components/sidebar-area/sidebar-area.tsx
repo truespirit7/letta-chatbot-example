@@ -64,7 +64,7 @@ export function SidebarArea() {
   }, [])
 
   return (
-    <Sidebar>
+    <Sidebar className="mt-1">
       <div className="flex flex-row items-center justify-between">
         <div className="text-xs font-bold relative flex w-full min-w-0 cursor-default p-2.5 pl-4">
           <Tooltip>
