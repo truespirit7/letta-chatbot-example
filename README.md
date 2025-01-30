@@ -67,4 +67,4 @@ Once the app is running, open your web browser and navigate to [http://localhost
 
 ## ☁️ Running the app with Letta Cloud
 
-[instructions here]
+Coming soon!
