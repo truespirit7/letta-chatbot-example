@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query'
 
 export function useCreateAgent() {
   return useMutation({
@@ -6,9 +6,9 @@ export function useCreateAgent() {
       return fetch('/api/agents', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then((response) => response.json());
-    },
-  });
+          'Content-Type': 'application/json'
+        }
+      }).then((response) => response.json())
+    }
+  })
 }
