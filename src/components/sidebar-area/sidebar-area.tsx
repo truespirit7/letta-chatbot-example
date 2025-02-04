@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { LoaderCircle, PlusIcon } from 'lucide-react'
 import { AppSidebar } from '@/components/sidebar-area/app-sidebar'
-import { Sidebar } from '../ui/sidebar'
+import { Sidebar } from '@/components/ui/sidebar'
 import { useAgentContext } from '@/app/[agentId]/context/agent-context'
 import { useCreateAgent } from '../hooks/use-create-agent'
 import { useQueryClient } from '@tanstack/react-query'
@@ -10,17 +10,26 @@ import { StatusCircle } from '../ui/status-circle'
 import { useIsConnected } from '../hooks/use-is-connected'
 import { useEffect, useMemo } from 'react'
 import { AgentState } from '@letta-ai/letta-client/api'
-import { Tooltip } from '../ui/tooltip'
-import { TooltipTrigger } from '../ui/tooltip'
-import { TooltipContent } from '../ui/tooltip'
-import { TooltipProvider } from '../ui/tooltip'
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent
+} from '@/components/ui/tooltip'
+import EditAgentForm from './edit-agent-form'
+import { AgentDialog } from '../ui/agent-dialog'
+import { DialogType, useDialogDetails } from '../ui/agent-dialog'
+import DeleteAgentConfirmation from './delete-agent-confirmation'
+import { useDeleteAgent } from '../hooks/use-agent-state'
 
 export function SidebarArea() {
-  const { agentId, setAgentId } = useAgentContext()
   const queryClient = useQueryClient()
+  const { agentId, setAgentId } = useAgentContext()
   const { mutate: createAgent, isPending } = useCreateAgent()
   const { data, isLoading } = useAgents()
   const isConnected = useIsConnected()
+  const { mutate: deleteAgent } = useDeleteAgent()
+
+  const { dialogType, closeAgentDialog } = useDialogDetails()
 
   const scrollSidebarToTop = () => {
     const divToScroll = document.getElementById('agents-list')
@@ -45,6 +54,27 @@ export function SidebarArea() {
         )
         setAgentId(data.id)
         scrollSidebarToTop()
+      }
+    })
+  }
+
+  const handleDelete = () => {
+    deleteAgent(agentId, {
+      onSuccess: () => {
+        queryClient.setQueriesData(
+          { queryKey: USE_AGENTS_KEY },
+          (oldData: AgentState[]) => {
+            const updatedData = [
+              ...oldData.filter((agent) => agent.id !== agentId)
+            ]
+            if (updatedData.length > 0) {
+              setAgentId(updatedData[0].id)
+              scrollSidebarToTop()
+            }
+            return updatedData
+          }
+        )
+        closeAgentDialog()
       }
     })
   }
@@ -105,7 +135,25 @@ export function SidebarArea() {
           </Button>
         </div>
       </div>
+
       {data && data.length > 0 && <AppSidebar agents={data} />}
+      {dialogType === DialogType.EditAgent && (
+        <AgentDialog
+          title='Edit agent'
+          content={<EditAgentForm agentId={agentId} />}
+        />
+      )}
+      {dialogType === DialogType.DeleteAgent && (
+        <AgentDialog
+          title='Delete agent?'
+          content={
+            <DeleteAgentConfirmation
+              agentId={agentId}
+              handleDelete={handleDelete}
+            />
+          }
+        />
+      )}
     </Sidebar>
   )
 }

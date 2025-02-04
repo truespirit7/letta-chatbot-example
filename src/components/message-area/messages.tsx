@@ -20,8 +20,8 @@ interface MessagesProps {
 export const Messages = (props: MessagesProps) => {
   const { isSendingMessage, sendMessage } = props
   const { agentId } = useAgentContext()
-  const { isEnabled } = useReasoningMessage()
   const { data: messages, isLoading } = useAgentMessages(agentId)
+  const { isEnabled } = useReasoningMessage()
   const { data: agents } = useAgents()
 
   const messagesListRef = useRef<HTMLDivElement>(null)

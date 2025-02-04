@@ -6,6 +6,7 @@ import { AgentDetailsProvider } from '@/components/ui/agent-details'
 import { SidebarProvider } from '@/components/ui/sidebar'
 import ContentLayout from './content-layout'
 import { ReasoningMessageProvider } from '@/components/toggle-reasoning-messages'
+import { DialogContextProvider } from '@/components/ui/agent-dialog'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -19,8 +20,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Letta Chatbot with Memory Template',
-  description: 'An example chatbot application built on the Letta API, which makes each chatbot a stateful agent (agent with memory) under the hood.',
-};
+  description:
+    'An example chatbot application built on the Letta API, which makes each chatbot a stateful agent (agent with memory) under the hood.'
+}
 
 export default function RootLayout({
   children
@@ -33,13 +35,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <SidebarProvider>
-            <AgentDetailsProvider>
-              <ReasoningMessageProvider>
-                <ContentLayout>{children}</ContentLayout>
-              </ReasoningMessageProvider>
-            </AgentDetailsProvider>
-          </SidebarProvider>
+          <DialogContextProvider>
+            <SidebarProvider>
+              <AgentDetailsProvider>
+                <ReasoningMessageProvider>
+                  <ContentLayout>{children}</ContentLayout>
+                </ReasoningMessageProvider>
+              </AgentDetailsProvider>
+            </SidebarProvider>
+          </DialogContextProvider>
         </Providers>
       </body>
     </html>
