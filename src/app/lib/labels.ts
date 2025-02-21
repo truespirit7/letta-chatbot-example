@@ -3,7 +3,7 @@ export const DEFAULT_BOT_MESSAGE =
 export const NO_MESSAGES_LABEL = 'Start a chat...'
 
 export const MESSAGE_POPOVER_DESCRIPTION =
-  "This is an [open source](https://github.com/letta-ai/letta-chatbot-template) chatbot template built using [Letta](https://docs.letta.com). It uses Letta's stateful agents to power each chatbot - so each chatbot has long-term memory (learn over time) and can run indefinitely without context window overflow."
+  "This is an open source chatbot template built using Letta. Each agent is stateful - so it has long-term memory (it can learn over time) and can be run indefinitely without context window overflow."
 export const suggestedChatActions = [
   {
     title: 'Tell me about yourself',
@@ -31,4 +31,4 @@ export const suggestedChatActions = [
 export const TEXTBOX_PLACEHOLDER = 'Send a message...'
 
 export const ERROR_CONNECTING =
-  'Issue loading data. Please check your connection.'
+  'Issue loading data. Please check your connection to the Letta Server.'

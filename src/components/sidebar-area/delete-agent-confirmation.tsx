@@ -12,8 +12,9 @@ const DeleteAgentConfirmation: React.FC<{
 
   return (
     <div className='space-y-4'>
-      <span className='text-sm'>This will delete the agent </span>
-      <span className='text-sm font-bold'>{agent?.name}.</span>
+      <span className='text-sm'>This will delete the agent</span>
+      <span className='text-sm font-bold'> {agent?.name} </span>
+      <span className='text-sm'>(this action cannot be undone)</span>
       <div className='flex justify-end space-x-3'>
         <Button variant='outline' onClick={() => closeAgentDialog()}>
           Cancel
