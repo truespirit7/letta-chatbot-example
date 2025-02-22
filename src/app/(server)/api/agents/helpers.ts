@@ -13,7 +13,7 @@ export async function validateAgentOwner(
     return {
       userId: 'default',
       agentId,
-      agent: getAgent(agentId)
+      agent: await getAgent(agentId)
     }
   }
 
