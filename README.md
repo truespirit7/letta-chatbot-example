@@ -3,9 +3,9 @@
   <h1 align="center">Letta Chatbot Template</h1>
 </a>
 
-<div align="center">
+<p align="center">
   Deploy your own AI chatbot built on [Letta](https://www.letta.com/) with AI agents that live forever and learn from experience.
-</div>
+</p>
 
 <div align="center">
 |
