@@ -20,6 +20,9 @@ import { AgentDialog } from '../ui/agent-dialog'
 import { DialogType, useDialogDetails } from '../ui/agent-dialog'
 import DeleteAgentConfirmation from './delete-agent-confirmation'
 import { useDeleteAgent } from '../hooks/use-agent-state'
+import { config } from 'dotenv'
+
+config()
 
 export function SidebarArea() {
   const queryClient = useQueryClient()
@@ -86,10 +89,11 @@ export function SidebarArea() {
   }, [data])
 
   const hostname = useMemo(() => {
-    if (typeof window !== 'undefined') {
-      return window.location.hostname === 'localhost' ||
-        window.location.hostname === '127.0.0.1' ||
-        window.location.hostname === '0.0.0.0'
+    if (process.env.NEXT_PUBLIC_LETTA_SERVER_URL) {
+      const lettaServerHostname = new URL(process.env.NEXT_PUBLIC_LETTA_SERVER_URL).hostname
+      return lettaServerHostname === 'localhost' ||
+        lettaServerHostname === '127.0.0.1' ||
+        lettaServerHostname === '0.0.0.0'
         ? 'LOCAL SERVER'
         : 'REMOTE SERVER'
     }
@@ -113,7 +117,7 @@ export function SidebarArea() {
                 {hostname}
               </div>
               <TooltipContent>
-                {typeof window !== 'undefined' && window.location.origin}
+                {process.env.NEXT_PUBLIC_LETTA_SERVER_URL || 'Cannot find Letta Server'}
               </TooltipContent>
             </TooltipTrigger>
           </Tooltip>
