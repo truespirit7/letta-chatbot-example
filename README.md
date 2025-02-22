@@ -35,8 +35,8 @@
 - Static defined agent state
   - Define your agent state in the `default-agents.json` file. This file contains the initial state of your agents, including the LLM model, user profile, agent persona, and other configurations.
 - Cookie-based sessions
-  - Includes an implementation of cookie-based sessions to emulate users
-  - Can be disabled by setting `USE_COOKIE_BASED_AUTHENTICATION=false` to view all your agents from the ADE
+  - Includes an implementation of cookie-based sessions to emulate users.
+  - Can be disabled by setting `USE_COOKIE_BASED_AUTHENTICATION=false` to view all your agents from the ADE.
   - Different chat histories for different browsers. Tracks anonymous users across requests without requiring authentication.
 
 ## 📦 What's included
@@ -115,7 +115,7 @@ npm run dev
 Environment variables can be controlled by setting them in your `.env` file or by setting them in your deployment environment.
 
 - `LETTA_ACCESS_TOKEN` - Your Letta access token, if not using cloud this is usually optiona.
-- `LETTA_SERVER_URL` - The URL of your Letta server. Default is `http://localhost:8283`.
+- `NEXT_PUBLIC_LETTA_SERVER_URL` - The URL of your Letta server. Default is `http://localhost:8283`.
 - `NEXT_PUBLIC_CREATE_AGENTS_FROM_UI` - If set to `true` will show a `+` button in the sidebar to create new agents from the `default-agents.json` file. Default is `true`.
 - `USE_COOKIE_BASED_AUTHENTICATION` - If set to `true` will use cookie-based sessions to emulate users. Default is `true`.
 
