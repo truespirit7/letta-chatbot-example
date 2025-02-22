@@ -4,7 +4,7 @@
 </a>
 
 <p align="center">
-  Deploy your own AI chatbot built on <a href="https://docs.letta.com/">Letta</a> with AI agents that live forever and learn from experience.
+  Deploy your own AI chatbot using <a href="https://docs.letta.com/">Letta</a> to create agents that can learn over time.
 </p>
 
 <div align="center">
