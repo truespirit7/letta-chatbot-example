@@ -1,12 +1,7 @@
-<p align="center">
-  <picture>
-    <img alt="Letta logo" src="/assets/chatbot_template_header_2x.png" width="500">
-  </picture>
-</p>
-
-<div align="center">
-  <h1>Letta Chatbot Template</h1>
-</div>
+<a href="https://docs.letta.com/">
+  <img alt="Stateful AI agent chatbot template built with Letta and Next.js." src="/assets/chatbot_template_header_2x.png">
+  <h1 align="center">Letta Chatbot Template</h1>
+</a>
 
 Deploy your own AI chatbot built on [Letta](https://www.letta.com/) with AI agents that live forever and learn from experience.
 
