@@ -117,7 +117,7 @@ export function SidebarArea() {
                 {hostname}
               </div>
               <TooltipContent>
-                {process.env.NEXT_PUBLIC_LETTA_SERVER_URL || 'Cannot find Letta Server'}
+                {process.env.NEXT_PUBLIC_LETTA_SERVER_URL || 'http://localhost:8283'}
               </TooltipContent>
             </TooltipTrigger>
           </Tooltip>
