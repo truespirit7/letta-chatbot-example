@@ -26,6 +26,10 @@
 > [!NOTE]
 > You must have a Letta server running to use this template. Follow this [quickstart guide](https://docs.letta.com/quickstart) to run your local Letta server.
 
+## 📺 Video overview (watch on YouTube)
+
+[![Build your own ChatGPT with memory using Letta](https://img.youtube.com/vi/JI8ioW2_iAU/0.jpg)](https://www.youtube.com/watch?v=JI8ioW2_iAU)
+
 ## ✨ Features
 
 - [Letta](https://github.com/letta-ai/letta)
