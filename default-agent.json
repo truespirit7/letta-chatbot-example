@@ -10,5 +10,7 @@
     }
   ],
   "DEFAULT_LLM": "letta/letta-free",
-  "DEFAULT_EMBEDDING": "letta/letta-free"
+  "DEFAULT_EMBEDDING": "letta/letta-free",
+  "LETTA_SERVER_URL": "http://localhost:8283",
+  "NEXT_PUBLIC_CREATE_AGENTS_FROM_UI": "true"
 }
